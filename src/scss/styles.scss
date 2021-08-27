@@ -1,0 +1,251 @@
+@import url("./normalize.css");
+
+// === MIXIN ===
+@mixin list-null {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+// === / MIXIN ===
+
+// === FUNCTIONS ===
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@function rem($num) {
+  @return (strip-unit($num) / 16) * 1rem;
+}
+// === / FUNCTIONS ===
+
+// === VARIABLES ===
+$base: 4px;
+$breakpoint-ex-sm-max: 360px;
+$breakpoint-sm-max: 648px;
+$breakpoint-md-max: 768px;
+$breakpoint-lg-max: 992px;
+$breakpoint-xl-max: 1200px;
+$breakpoint-xxl-max: 1400px;
+// === / VARIABLES ===
+
+// === COMMON ===
+body {
+  background-color: #e0e0e0;
+}
+
+.container {
+  max-width: 968px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-heading {
+  font-family: "Ubuntu", "Arial", sans-serif;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 25px;
+  color: #2c2c2c;
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+
+.ads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  overflow: hidden;
+
+  @media (max-width: $breakpoint-lg-max) {
+    justify-content: center;
+  }
+
+  &--more {
+    height: auto !important;
+    overflow: auto;
+  }
+}
+
+.ad {
+  max-width: 224px;
+  filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1));
+
+  &__img {
+    position: relative;
+    width: 224px;
+    height: 260px;
+    overflow: hidden;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  &__viewed {
+    position: absolute;
+    display: none;
+    font-family: "Ubuntu", "Arial", sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #ffffff;
+    background: rgba(44, 44, 44, 0.74);
+    border-radius: 8px;
+    top: 11px;
+    left: 30%;
+    padding: 6px;
+    z-index: 5;
+  }
+
+  &__btn {
+    position: absolute;
+    display: flex;
+    z-index: 5;
+    flex-direction: column;
+    gap: 12px;
+    right: 15px;
+    bottom: 35px;
+  }
+
+  &__compare {
+    width: 24px;
+    height: 24px;
+    background-image: url("../img/sravnit.svg");
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+    font-size: 0;
+  }
+
+  &__like {
+    width: 24px;
+    height: 24px;
+    background-image: url("../img/like.svg");
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+    font-size: 0;
+  }
+
+  &__info {
+    background-color: #fff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding-left: 15px;
+    padding-right: 12px;
+  }
+
+  &__info-up {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__old-price {
+    font-family: "Roboto", "Arial", sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #5a5a5a;
+    margin-top: 0;
+    margin-bottom: 1px;
+    position: relative;
+    text-decoration: line-through;
+  }
+
+  &__new-price {
+    font-family: "Roboto", "Arial", sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 26px;
+    color: #2c2c2c;
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+
+  &__icon {
+    &:hover {
+      > svg path {
+        fill: #00a0ab;
+      }
+    }
+  }
+
+  &__name {
+    font-family: "Roboto", "Arial", sans-serif;
+    font-size: 14px;
+    line-height: 16px;
+    color: #2c2c2c;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__city {
+    font-family: "Ubuntu", "Arial", sans-serif;
+    color: #8f8f8f;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  &__date {
+    font-family: "Ubuntu", "Arial", sans-serif;
+    color: #8f8f8f;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+
+.viewed > .ad__info {
+  background-color: #fff6a5;
+}
+
+.viewed .ad__compare {
+  background-image: url("../img/viewed-sravnit.svg");
+}
+
+.viewed .ad__like {
+  background-image: url("../img/viewed-like.svg");
+}
+
+.viewed .ad__viewed {
+  display: inline-block;
+}
+
+.more {
+  font-family: "Ubuntu", "Arial", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #00a0ab;
+  text-align: right;
+  align-self: flex-end;
+  border: none;
+  background-color: transparent;
+  background-image: url("../img/turn.svg");
+  background-repeat: no-repeat;
+  background-position: top 8px right 3px;
+  padding-right: 25px;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.slider {
+  &__img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.swiper-pointer-events {
+  position: relative;
+}
+
+// === / COMMON ===
